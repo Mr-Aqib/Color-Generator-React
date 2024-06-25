@@ -21,6 +21,8 @@ const ColorGene = () => {
             setErr(true)
             toast.error("Invalid Color")
             console.log("Invalid Color")
+            setInput("")
+            setColors([])
         }
     }
 
