@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
 import toast from 'react-hot-toast'
 import Values from 'values.js'
+import SingleColors from './SingleColors'
 const ColorGene = () => {
     const [input, setInput] = useState("")
-    const [err,setErr] = useState(false)
+    const [err, setErr] = useState(false)
+    const [colors, setColors] = useState([])
     const handleChange = (e) =>
     { 
         e.preventDefault();
         try {
             setErr(false)
-            const newcolor = new Values(input).all(10)
+            const genratedColors = new Values(input).all(10)
             toast.success("Color Generated")
-            console.log(newcolor)
+            setColors(genratedColors)
             setInput("")
         }
         catch
@@ -20,7 +22,8 @@ const ColorGene = () => {
             toast.error("Invalid Color")
             console.log("Invalid Color")
         }
-        }
+    }
+
   return (
       <>
           <div className="container">
@@ -32,6 +35,18 @@ const ColorGene = () => {
                           Generate
                       </button>
                   </form>
+              </div>
+              <div className="container">
+                  <div className="row">
+                  {
+                      colors?.map((items, index) =>
+                      {
+                          return (
+                              <SingleColors key={index} index={index} hex={items.hex}  {...items} />
+                          )
+                    })
+                      }
+                      </div>
               </div>
           </div>
       </>
