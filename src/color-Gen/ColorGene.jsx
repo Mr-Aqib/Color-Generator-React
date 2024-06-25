@@ -39,7 +39,7 @@ const ColorGene = () => {
                   </form>
               </div>
               <div className="container">
-                  <div className="row">
+                  <div className="row d-flex align-items-center justify-content-center">
                   {
                       colors?.map((items, index) =>
                       {
